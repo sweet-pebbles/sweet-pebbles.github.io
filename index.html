@@ -22,11 +22,26 @@
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
     }
+
+    #reply {
+        margin-top: 30px;
+        color: black;
+    }
+
+    #myBtn {
+        padding: 5px 10px;
+        background-color: #2ecc71;
+        border-radius: 2px;
+        color: white;
+        border: none;
+    }
 </style>
 <body>
     <div class="container">
         <div class="wrapper-1">
-            <h1>Welcome</h1>
+            <h1>Are we Friends ?</h1>
+            <br/>
+            <h3>lets find out...🧡</h3>
             <br/>
             <br/>
             <p id='question'>Q. What is my name is the...puppy puppy hai shame is the ?</p>
@@ -37,12 +52,15 @@
             <form id='contact-form'>
                 <br/>
                 <input type="submit" id='myBtn' onclick="sendAlert();" value="Submit">
-              </form>
-            <h1 id='reply'></h1>
+                <br/><br/>
+                <p id='warning'  style='color: grey;'>(Submit the correct answer to reveal the message)</p>
+            </form>
+            <h2 id='reply'></h2>
         </div>
     </div>
 <script>
     const form = document.getElementById('contact-form')
+    const warning = document.getElementById('warning')
     const acknowledge = document.getElementById('reply')
 
     form.addEventListener('submit', e => e.preventDefault())
@@ -50,6 +68,7 @@
     function sendAlert() {
         // Sending Message
         const answer = document.getElementById('answer').value
+        warning.style.display = 'none'
 
         if( answer == 'mehulisgreat' ) {
             acknowledge.innerHTML = 'Your feelings here...'
