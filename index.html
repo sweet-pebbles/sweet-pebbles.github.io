@@ -6,31 +6,44 @@
     <title>Pebbles</title>
 </head>
 <body>
-    <form id="my-form"
-  action="https://formspree.io/xrgydpoj"
-  method="POST"
->
-  <label>Email:</label>
-  <input type="email" name="email" />
-  <label>Message:</label>
-  <input type="text" name="message" />
-  <button id="my-form-button">Submit</button>
-  <p id="my-form-status"></p>
-</form>
-
-<!-- Place this script at the end of the body tag -->
-
+    <div class="container">
+        <div class="wrapper-1">
+            <input id='answer' type='text' placeholder="Type here..." required>
+            <button id='submit-button' onclick="comit();">Submit</button>
+            <h1 id='reply'></h1>
+        </div>
+        <!-- <div class="wrapper-2">
+            <form id="my-form" action="https://formspree.io/xrgydpoj" method="POST">
+                <label>Email:</label>
+                <input type="email" name="email" />
+                <label>Message:</label>
+                <input type="text" name="message" />
+                <button id="my-form-button">Submit</button>
+                <p id="my-form-status"></p>
+            </form>
+        </div> -->
+    </div>
 <script>
+    const submitButton = document.getElementById('submit-button')
+    const acknowledge = document.getElementById('reply')
+
+    function comit(){
+        const answer = document.getElementById('answer').value
+        if( answer == 'mehulisgreat' ) {
+            return acknowledge.innerHTML = 'Your feelings here...'
+        }
+        else{
+            return acknowledge.innerHTML = 'aisa mat karo...dil se bura lagta hai...😭😭 aur chappal marunga wo alag...'
+        }
+    }
+</script>
+<!-- <script>
   window.addEventListener("DOMContentLoaded", function() {
 
-    // get the form elements defined in your form HTML above
-    
     var form = document.getElementById("my-form");
     var button = document.getElementById("my-form-button");
     var status = document.getElementById("my-form-status");
 
-    // Success and Error functions for after the form is submitted
-    
     function success() {
       form.reset();
       button.style = "display: none ";
@@ -50,8 +63,6 @@
     });
   });
   
-  // helper function for sending an AJAX request
-
   function ajax(method, url, data, success, error) {
     var xhr = new XMLHttpRequest();
     xhr.open(method, url);
@@ -66,6 +77,6 @@
     };
     xhr.send(data);
   }
-</script>
+</script> -->
 </body>
 </html>
