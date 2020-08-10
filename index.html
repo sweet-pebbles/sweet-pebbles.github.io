@@ -5,19 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pebbles</title>
 </head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .container {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+</style>
 <body>
     <div class="container">
         <div class="wrapper-1">
+            <h1>Welcome</h1>
+            <br/>
+            <br/>
+            <p id='question'>Q. What is my name is the...puppy puppy hai shame is the ?</p>
+            <br/>
             <input id='answer' type='text' placeholder="Type here..." required>
         </div>
         <div class="wrapper-2">
             <form id='contact-form'>
+                <br/>
                 <input type="submit" id='myBtn' onclick="sendAlert();" value="Submit">
               </form>
             <h1 id='reply'></h1>
         </div>
     </div>
-
 <script>
     const form = document.getElementById('contact-form')
     const acknowledge = document.getElementById('reply')
@@ -60,7 +83,8 @@
             button.disabled = false
         }
             else{
-                return acknowledge.innerHTML = 'aisa mat karo...dil se bura lagta hai...😭😭 aur chappal marunga wo alag...'
+                acknowledge.innerHTML = 'aisa mat karo...dil se bura lagta hai...😭😭 aur chappal marunga wo alag...'
+                console.log('o...dekh k bhai')
             }
         }
 </script>
