@@ -9,74 +9,60 @@
     <div class="container">
         <div class="wrapper-1">
             <input id='answer' type='text' placeholder="Type here..." required>
-            <button id='submit-button' onclick="comit();">Submit</button>
+        </div>
+        <div class="wrapper-2">
+            <form id='contact-form'>
+                <input type="submit" id='myBtn' onclick="sendAlert();" value="Submit">
+              </form>
             <h1 id='reply'></h1>
         </div>
-        <!-- <div class="wrapper-2">
-            <form id="my-form" action="https://formspree.io/xrgydpoj" method="POST">
-                <label>Email:</label>
-                <input type="email" name="email" />
-                <label>Message:</label>
-                <input type="text" name="message" />
-                <button id="my-form-button">Submit</button>
-                <p id="my-form-status"></p>
-            </form>
-        </div> -->
     </div>
+
 <script>
-    const submitButton = document.getElementById('submit-button')
+    const form = document.getElementById('contact-form')
     const acknowledge = document.getElementById('reply')
 
-    function comit(){
+    form.addEventListener('submit', e => e.preventDefault())
+
+    function sendAlert() {
+        // Sending Message
         const answer = document.getElementById('answer').value
+
         if( answer == 'mehulisgreat' ) {
-            return acknowledge.innerHTML = 'Your feelings here...'
+            acknowledge.innerHTML = 'Your feelings here...'
+
+            // Disabling button
+            const button = document.getElementById('myBtn')
+            button.disabled = true
+
+            const url='https://formspree.io/xrgydpoj';
+            let data = {
+                _replyto: 'your@neighbour.com',
+                _message: 'form is accessed'
+            }
+
+            let fetchData = { 
+                method: 'POST', 
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(data)
+            }
+            fetch(url, fetchData)
+            .then(function() {
+                console.log('message sent')
+                form.reset()
+            })
+            .catch(error => {
+                console.log('error')
+            })
+        //  Enabling button
+            button.disabled = false
         }
-        else{
-            return acknowledge.innerHTML = 'aisa mat karo...dil se bura lagta hai...😭😭 aur chappal marunga wo alag...'
+            else{
+                return acknowledge.innerHTML = 'aisa mat karo...dil se bura lagta hai...😭😭 aur chappal marunga wo alag...'
+            }
         }
-    }
 </script>
-<!-- <script>
-  window.addEventListener("DOMContentLoaded", function() {
-
-    var form = document.getElementById("my-form");
-    var button = document.getElementById("my-form-button");
-    var status = document.getElementById("my-form-status");
-
-    function success() {
-      form.reset();
-      button.style = "display: none ";
-      status.innerHTML = "Thanks!";
-    }
-
-    function error() {
-      status.innerHTML = "Oops! There was a problem.";
-    }
-
-    // handle the form submission event
-
-    form.addEventListener("submit", function(ev) {
-      ev.preventDefault();
-      var data = new FormData(form);
-      ajax(form.method, form.action, data, success, error);
-    });
-  });
-  
-  function ajax(method, url, data, success, error) {
-    var xhr = new XMLHttpRequest();
-    xhr.open(method, url);
-    xhr.setRequestHeader("Accept", "application/json");
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState !== XMLHttpRequest.DONE) return;
-      if (xhr.status === 200) {
-        success(xhr.response, xhr.responseType);
-      } else {
-        error(xhr.status, xhr.response, xhr.responseType);
-      }
-    };
-    xhr.send(data);
-  }
-</script> -->
 </body>
 </html>
