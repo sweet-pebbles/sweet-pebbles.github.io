@@ -13,6 +13,7 @@
 
     body {
         font-family: Arial, Helvetica, sans-serif;
+        font-size: large;
     }
     .container {
         margin: 0;
@@ -30,10 +31,16 @@
 
     #myBtn {
         padding: 5px 10px;
-        background-color: #2ecc71;
+        background-color: #303030;
         border-radius: 2px;
         color: white;
         border: none;
+    }
+
+    #answer {
+        padding: 3px;
+        border: 1px #2ecc71 solid;
+        border-radius: 2px;
     }
 </style>
 <body>
@@ -41,10 +48,10 @@
         <div class="wrapper-1">
             <h1>Are we Friends ?</h1>
             <br/>
-            <h3>lets find out...</h3>
+            <h3>Let's find out...</h3>
             <br/>
             <br/>
-            <p id='question'>Q. What is the color of the pebbles spaceship ?</p>
+            <p id='question'>What is the color of pebbles spaceship ?</p>
             <br/>
             <input id='answer' type='text' placeholder="Type here..." required>
         </div>
@@ -53,7 +60,7 @@
                 <br/>
                 <input type="submit" id='myBtn' onclick="sendAlert();" value="Continue">
                 <br/><br/>
-                <p id='warning'  style='color: grey;'>(Submit the correct answer to reveal the message)</p>
+                <!-- <p id='warning'  style='color: grey;'>(Submit the correct answer to reveal the message)</p> -->
             </form>
             <h2 id='reply'></h2>
         </div>
