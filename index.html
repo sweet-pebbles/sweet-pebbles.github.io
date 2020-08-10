@@ -74,7 +74,7 @@
 
     function sendAlert() {
         // Sending Message
-        const answer = document.getElementById('answer').value
+        var answer = document.getElementById('answer').value
         // warning.style.display = 'none'
 
         if( answer.toLowerCase() == 'yellow' ) {
@@ -109,8 +109,8 @@
             button.disabled = false
         }
             else{
-                acknowledge.innerHTML = 'Incorrect'
-                console.log('o...dekh k bhai')
+                document.getElementById('answer').value = ''
+                acknowledge.innerHTML = 'Nope, try again...'
             }
         }
 </script>
