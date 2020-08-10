@@ -51,7 +51,7 @@
             <h3>Let's find out...</h3>
             <br/>
             <br/>
-            <p id='question'>What is the color of pebbles spaceship ?</p>
+            <p id='question'>What was the color of Pebbles spaceship ?</p>
             <br/>
             <input id='answer' type='text' placeholder="Type here..." required>
         </div>
@@ -75,10 +75,10 @@
     function sendAlert() {
         // Sending Message
         const answer = document.getElementById('answer').value
-        warning.style.display = 'none'
+        // warning.style.display = 'none'
 
-        if( answer == 'mehulisgreat' ) {
-            acknowledge.innerHTML = 'Your feelings here...'
+        if( answer.toLowerCase() == 'mehulisgreat' ) {
+            acknowledge.innerHTML = 'Correct'
 
             // Disabling button
             const button = document.getElementById('myBtn')
@@ -109,7 +109,7 @@
             button.disabled = false
         }
             else{
-                acknowledge.innerHTML = 'aisa mat karo...dil se bura lagta hai...😭😭 aur chappal marunga wo alag...'
+                acknowledge.innerHTML = 'Incorrect'
                 console.log('o...dekh k bhai')
             }
         }
