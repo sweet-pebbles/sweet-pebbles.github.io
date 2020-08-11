@@ -62,7 +62,7 @@
     }
 
     #hi {
-        margin-top: 60%;
+        margin-top: 70rem;
         width: 50%;
         margin-left: 25%;
     }
@@ -136,13 +136,16 @@
             </p>
             <br/><br/>
             <form id='message-contact'>
-                <h4>If you want to say something to me, then you can type here...</h4>
+                <h5 style='margin-bottom: 5px;'>If you want to say something to me, then you can type here...</h5>
                 <br/>
-                <textarea placeholder="Type here..." id='textMessage' name='textMessage' rows='4' required></textarea>
+                <textarea placeholder="Type here..." id='textMessage' name='textMessage' rows='4'></textarea>
                 <br/>
                 <input id='message-button' onclick='send();' type="submit" value='Send'>
+                <br/><br/>
+                <h5>Or if you still do not want to talk to me...</h5>
+                <button id='message-button' onclick="nextPage();">Continue</button>
             </form>
-            <p id='wait' >A gift is waiting for you...</p>
+            <p id='wait' >Hold on...</p>
         </div>
         <div class="wrapper-1">
             <h1>Are we Friends?</h1>
@@ -177,6 +180,11 @@
         </div>
     </div>
 <script>
+
+    function nextPage() {
+        window.location.href = "/page2.html";
+    }
+
     const messageForm = document.getElementById('message-contact')
     const waitMessage = document.getElementById('wait')
 

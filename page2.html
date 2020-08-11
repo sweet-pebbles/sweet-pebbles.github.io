@@ -4,23 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pebbles</title>
-    <script type="text/javascript" src="gifffer.min.js"></script>
     <style>
         * {
             margin: 0;
             padding: 0;
         }
-        
+
         body {
             font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
         }
 
         .container {
-            text-align: center;
             margin-bottom: 50px;
+            box-sizing: border-box;
         }
 
         #disc {
+            margin-top: 50px;
+            width: 70%;
+            display: none;
+        }
+
+        #still-disc {
             margin-top: 50px;
             width: 70%;
         }
@@ -28,17 +34,50 @@
         #message {
             margin: 30px;
         }
+
+        button {
+            background: none;
+            border: none;
+            outline: none;
+        }
+
+        #button {
+            width: 4rem;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <img id='disc' src="https://media.giphy.com/media/f6gEGSAsoMHh4vW5jB/giphy.gif" />
+        <img id='disc' src="https://media.giphy.com/media/f6gEGSAsoMHh4vW5jB/giphy.gif">
+        <img id='still-disc' src='./songImage.png'>
         <br/>
-        <h2 id='message'>A song for you,<br/>from my side</h2>
-        <audio controls>
+        <h2 id='message'>Earphones are recommended</h2>
+        <br/>
+        <audio id='mySong'>
             <source src="./song.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
+        <button onclick="playPause();"><img id='button' src='./play.png' alt='play song'></button>
     </div>
+    <script>
+        var counter = 0
+            function playPause(){
+                var song = document.getElementById('mySong')
+                    if(counter%2==0){
+                        document.getElementById('disc').style.display = 'inline'
+                        document.getElementById('still-disc').style.display = 'none'
+                        document.getElementById('button').src = './pause.png'
+                        counter += 1
+                        song.play()
+                    }
+                    else{
+                        document.getElementById('disc').style.display = 'none'
+                        document.getElementById('still-disc').style.display = 'inline'
+                        document.getElementById('button').src = './play.png'
+                        counter += 1
+                        song.pause()
+                    }
+            }
+    </script>
 </body>
 </html>
