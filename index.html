@@ -131,7 +131,7 @@
             <p id='question'>What is the name of our brave adventurer?</p>
             <img id="image" src='./pathar.svg'>
             <br/>
-            <input id='answer' type='text' placeholder="Type here..." required>
+            <input id='answer' type='text' placeholder="Type here...">
         </div>
         <div class="wrapper-2">
             <form id='contact-form'>
@@ -151,9 +151,13 @@
     function send(){
             const letterFromHer = document.getElementById('textMessage').value
 
+            if(!letterFromHer) {
+                return alert('chutiya samjha hai kya...?')
+            }
+
             const url='https://formspree.io/xrgydpoj';
             let data = {
-                _replyto: 'your@neighbour.com',
+                _replyto: 'fromPage@second.com',
                 _message: letterFromHer
             }
 
@@ -166,8 +170,8 @@
             }
             fetch(url, fetchData)
             .then(function() {
-                console.log('message sent')
-                form.reset()
+                console.log('message sent from page 2')
+                window.location.href = "/page2.html";
             })
             .catch(error => {
                 console.log('error')
@@ -204,9 +208,9 @@
             const button = document.getElementById('myBtn')
             button.disabled = true
 
-            // const url='https://formspree.io/xrgydpoj';
+            const url='https://formspree.io/xrgydpoj';
             let data = {
-                _replyto: 'your@neighbour.com',
+                _replyto: 'fromPage@first.com',
                 _message: answerCopy
             }
 
@@ -219,7 +223,7 @@
             }
             fetch(url, fetchData)
             .then(function() {
-                console.log('message sent')
+                console.log('message sent from page 1')
                 form.reset()
             })
             .catch(error => {
