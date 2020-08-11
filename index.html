@@ -30,6 +30,10 @@
         color: black;
     }
 
+    #correct-answer {
+        display: none;
+    }
+
     #myBtn {
         padding: 5px 10px;
         background-color: #303030;
@@ -54,9 +58,31 @@
         margin-bottom: 30px;
         width: 6rem;
     }
+
+    #hi {
+        width: 35%;
+    }
+
+    #uttar {
+        margin-left: 40px;
+    }
 </style>
 <body>
     <div class="container">
+        <div id="correct-answer">
+            <img id='hi' src='./hi.png'>
+            <h2 id='uttar'>
+                Dear friend,<br/>
+                main jaanta hu ki tum bhi merese bahut pyaar karti ho<br/>
+                toh saare bandhan tod-tadkar aajao mere paas<br/>
+                laga lo mujhe kas kar gale<br/>
+                baaki chod de tyagi par,<br/>
+
+                Yours lovingly,<br/>
+                tumhare dil ka chor<br/><br/>
+                Written with ❤️ Mehul Singh Teya a.k.a daxter-army
+            </h2>
+        </div>
         <div class="wrapper-1">
             <h1>Are we Friends?</h1>
             <br/>
@@ -93,25 +119,35 @@
     const form = document.getElementById('contact-form')
     const warning = document.getElementById('warning')
     const acknowledge = document.getElementById('reply')
+    const correctAnswer = document.getElementById('correct-answer')
+
+    const wrapperOne = document.querySelector('.wrapper-1')
+    const wrapperTwo = document.querySelector('.wrapper-2')
+
+    var answerCopy = []
 
     form.addEventListener('submit', e => e.preventDefault())
 
     function sendAlert() {
-        // Sending Message
         var answer = document.getElementById('answer').value
+        answerCopy.push(answer)
+        console.log(answerCopy)
         // warning.style.display = 'none'
 
         if( answer.toLowerCase() == 'pebbles' | answer.toLowerCase() == 'pebble' ) {
-            acknowledge.innerHTML = 'Correct'
+            
+            wrapperOne.style.display = 'none'
+            wrapperTwo.style.display = 'none'
+            correctAnswer.style.display = 'block'
 
             // Disabling button
             const button = document.getElementById('myBtn')
             button.disabled = true
 
-            const url='https://formspree.io/xrgydpoj';
+            // const url='https://formspree.io/xrgydpoj';
             let data = {
                 _replyto: 'your@neighbour.com',
-                _message: answer
+                _message: answerCopy
             }
 
             let fetchData = { 
