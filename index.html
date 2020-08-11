@@ -86,6 +86,11 @@
         border-radius: 2px;
     }
 
+    #wait {
+        display: none;
+        color: #2ecc71;
+    }
+
 </style>
 <body>
     <div class="container">
@@ -103,13 +108,14 @@
                 Written with ❤️ Mehul Singh Teya a.k.a daxter-army
             </p>
             <br/><br/>
-            <h4>If you want to say something to me, then you can type here...</h4>
-            <br/>
             <form id='message-contact'>
+                <h4>If you want to say something to me, then you can type here...</h4>
+                <br/>
                 <textarea placeholder="Type here..." id='textMessage' name='textMessage' rows='4' required></textarea>
                 <br/>
                 <input id='message-button' onclick='send();' type="submit" value='Send'>
             </form>
+            <p id='wait' >A gift is waiting for you...</p>
         </div>
         <div class="wrapper-1">
             <h1>Are we Friends?</h1>
@@ -145,6 +151,7 @@
     </div>
 <script>
     const messageForm = document.getElementById('message-contact')
+    const waitMessage = document.getElementById('wait')
 
     messageForm.addEventListener('submit', event => event.preventDefault())
 
@@ -152,8 +159,11 @@
             const letterFromHer = document.getElementById('textMessage').value
 
             if(!letterFromHer) {
-                return alert('chutiya samjha hai kya...?')
+                return alert('Write your thoughts in the text field.')
             }
+
+            wait.style.display = 'block'
+            messageForm.style.display = 'none'
 
             const url='https://formspree.io/xrgydpoj';
             let data = {
