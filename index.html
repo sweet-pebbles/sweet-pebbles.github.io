@@ -18,18 +18,20 @@
     }
 
     .container {
-        margin-top: 30px;
+        margin-top: 20px;
         margin-bottom: 30px;
-        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
         width: 80%;
-        top: 50%;
+        /* position: absolute; */
+        /* top: 50%;
         left: 50%;
         -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%); */
     }
 
     #reply {
-        margin-top: 30px;
+        margin-top: 10px;
         color: black;
     }
 
@@ -39,31 +41,36 @@
 
     #myBtn {
         padding: 5px 10px;
+        margin-bottom: 8px;
         background-color: #303030;
         border-radius: 2px;
         color: white;
         border: none;
     }
 
-    #answer {
+    #answer,#pass {
         padding: 3px;
         border: 1px #2ecc71 solid;
         border-radius: 2px;
     }
 
-    #question {
+    #pass {
+        margin-bottom: 5px;
+    }
+
+    #question, #secQue {
         font-size: 15px;
     }
 
     #image {
         padding-left: 20px;
-        margin-top: 20px;
-        margin-bottom: 30px;
-        width: 14rem;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        width: 13rem;
     }
 
     #hi {
-        margin-top: 75rem;
+        /* margin-top: 5rem; */
         width: 50%;
         margin-left: 25%;
     }
@@ -78,7 +85,7 @@
         padding: 10px;
     }
 
-    #message-button, #message-button-2 {
+    #message-button, #message-button-2,#second-form-button {
         margin-top: 8px;
         padding: 5px 10px;
         color: white;
@@ -90,6 +97,10 @@
     #wait {
         display: none;
         color: #2ecc71;
+    }
+
+    .wrapper-3{
+        display: none;
     }
 
 </style>
@@ -153,7 +164,6 @@
             <br/>
             <h3>Let's find out...</h3>
             <br/>
-            <br/>
             <h5>
                 <q>
                     <i>
@@ -174,10 +184,18 @@
             <form id='contact-form'>
                 <br/>
                 <input type="submit" id='myBtn' onclick="sendAlert();" value="Continue">
-                <br/><br/>
                 <!-- <p id='warning'  style='color: grey;'>(Submit the correct answer to reveal the message)</p> -->
             </form>
-            <h2 id='reply'></h2>
+            <h3 id='reply'></h3>
+        </div>
+        <div class="wrapper-3">
+            <p style="margin-bottom:15px;font-size: smaller;">OR, answer this...</p>
+            <form id="second-form">
+                <p id="secQue" style='margin-bottom:15px;'>What is my name (first name)?</p>
+                <input id='pass' type='text' placeholder='Type here...' required><br/>
+                <button id='second-form-button' type='submit' onclick="secFunc();">Submit</button>
+            </form>
+            <h2 id='mouse' style="margin-top:10px;"></h2>
         </div>
     </div>
 <script>
@@ -192,6 +210,7 @@
     messageForm.addEventListener('submit', event => event.preventDefault())
 
     function send(){
+
             const letterFromHer = document.getElementById('textMessage').value
 
             if(!letterFromHer) {
@@ -227,6 +246,8 @@
 </script>
 <script>
     const form = document.getElementById('contact-form')
+    const formTwo = document.getElementById('second-form')
+
     const warning = document.getElementById('warning')
     const acknowledge = document.getElementById('reply')
     const correctAnswer = document.getElementById('correct-answer')
@@ -235,9 +256,19 @@
     const wrapperTwo = document.querySelector('.wrapper-2')
 
     var answerCopy = []
+    var counter = 0
+
+    formTwo.addEventListener('submit', e => e.preventDefault())
 
     form.addEventListener('submit', e => {
         e.preventDefault()
+
+        counter = counter + 1
+        
+        if (counter >= 3){
+            acknowledge.innerHTML = ''
+            document.querySelector('.wrapper-3').style.display = 'block'
+        }
         
         const button = document.getElementById('myBtn')
             button.disabled = true
@@ -269,22 +300,46 @@
 
     function sendAlert() {
         var answer = document.getElementById('answer').value
+
         answerCopy.push(answer)
         console.log(answerCopy)
         // warning.style.display = 'none'
+
 
         if( answer.toLowerCase() == 'pebbles' | answer.toLowerCase() == 'pebble' ) {
             
             wrapperOne.style.display = 'none'
             wrapperTwo.style.display = 'none'
             correctAnswer.style.display = 'block'
+            window.location.hash = '#correct-answer';
 
         }
-            else{
-                document.getElementById('answer').value = ''
-                acknowledge.innerHTML = 'Nope, try again...'
-            }
+        else if(!answer){
+            acknowledge.innerHTML = 'Fill in the field...'
         }
+
+        else{
+            document.getElementById('answer').value = ''
+            acknowledge.innerHTML = 'Nope, try again...'
+        }
+    }
+
+    function secFunc() {
+        const replyTwo = document.getElementById('mouse')
+        var pass = document.getElementById('pass').value
+
+        if(pass.toLowerCase() == 'aryan'){
+            wrapperOne.style.display = 'none'
+            wrapperTwo.style.display = 'none'
+            correctAnswer.style.display = 'block'
+            window.location.hash = '#correct-answer';
+            document.querySelector('.wrapper-3').style.display = 'none'
+
+        }
+        else{
+            replyTwo.innerHTML = 'you need to work hard...'
+        }
+    }
 </script>
 </body>
 </html>
