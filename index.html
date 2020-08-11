@@ -17,6 +17,7 @@
     }
     .container {
         margin: 0;
+        margin-bottom: 50px;
         position: absolute;
         width: 80%;
         top: 50%;
@@ -68,6 +69,21 @@
         margin-top: 50px;
         font-size: larger;
     }
+
+    textarea{
+        width: 100%;
+        padding: 10px;
+    }
+
+    #message-button {
+        margin-top: 8px;
+        padding: 5px 10px;
+        color: white;
+        background-color: #303030;
+        border: 1px #303030 solid;
+        border-radius: 2px;
+    }
+
 </style>
 <body>
     <div class="container">
@@ -84,6 +100,14 @@
                 tumhare dil ka chor<br/><br/>
                 Written with ❤️ Mehul Singh Teya a.k.a daxter-army
             </p>
+            <br/><br/>
+            <h4>If you want to say something to me, then you can type here...</h4>
+            <br/>
+            <form id='message-contact'>
+                <textarea placeholder="Type here..." id='textMessage' name='textMessage' rows='4' required></textarea>
+                <br/>
+                <input id='message-button' onclick='send();' type="submit" value='Send'>
+            </form>
         </div>
         <div class="wrapper-1">
             <h1>Are we Friends?</h1>
@@ -117,6 +141,38 @@
             <h2 id='reply'></h2>
         </div>
     </div>
+<script>
+    const messageForm = document.getElementById('message-contact')
+
+    messageForm.addEventListener('submit', event => event.preventDefault())
+
+    function send(){
+            const letterFromHer = document.getElementById('textMessage').value
+
+            const url='https://formspree.io/xrgydpoj';
+            let data = {
+                _replyto: 'your@neighbour.com',
+                _message: letterFromHer
+            }
+
+            let fetchData = { 
+                method: 'POST', 
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(data)
+            }
+            fetch(url, fetchData)
+            .then(function() {
+                console.log('message sent')
+                form.reset()
+            })
+            .catch(error => {
+                console.log('error')
+            })
+    }
+
+</script>
 <script>
     const form = document.getElementById('contact-form')
     const warning = document.getElementById('warning')
